@@ -1,0 +1,9 @@
+{
+  "platforms": ["apple", "android", "web"],
+  "apple": {
+    "modules": ["ExpoDeviceCornerRadiusModule"]
+  },
+  "android": {
+    "modules": ["expo.modules.devicecornerradius.ExpoDeviceCornerRadiusModule"]
+  }
+}

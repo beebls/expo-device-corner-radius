@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "expo-device-corner-radius": ["../src/index"],
+      "expo-device-corner-radius/*": ["../src/*"]
+    }
+  }
+}
