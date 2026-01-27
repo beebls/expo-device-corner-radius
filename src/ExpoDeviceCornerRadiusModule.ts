@@ -1,12 +1,10 @@
-import { NativeModule, requireNativeModule } from 'expo';
+import { NativeModule, requireNativeModule } from "expo";
 
-import { ExpoDeviceCornerRadiusModuleEvents } from './ExpoDeviceCornerRadius.types';
+import { ExpoDeviceCornerRadiusModuleEvents } from "./ExpoDeviceCornerRadius.types";
 
 declare class ExpoDeviceCornerRadiusModule extends NativeModule<ExpoDeviceCornerRadiusModuleEvents> {
-  PI: number;
-  hello(): string;
-  setValueAsync(value: string): Promise<void>;
+  getCornerRadius(): number;
 }
-
-// This call loads the native module object from the JSI.
-export default requireNativeModule<ExpoDeviceCornerRadiusModule>('ExpoDeviceCornerRadius');
+export default requireNativeModule<ExpoDeviceCornerRadiusModule>(
+  "ExpoDeviceCornerRadius"
+);

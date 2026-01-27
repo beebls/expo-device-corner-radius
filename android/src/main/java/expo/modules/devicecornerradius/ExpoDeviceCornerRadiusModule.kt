@@ -2,49 +2,42 @@ package expo.modules.devicecornerradius
 
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
-import java.net.URL
+import android.os.Build
+import android.view.WindowInsets
+import android.view.RoundedCorner
 
 class ExpoDeviceCornerRadiusModule : Module() {
-  // Each module class must implement the definition function. The definition consists of components
-  // that describes the module's functionality and behavior.
-  // See https://docs.expo.dev/modules/module-api for more details about available components.
   override fun definition() = ModuleDefinition {
-    // Sets the name of the module that JavaScript code will use to refer to the module. Takes a string as an argument.
-    // Can be inferred from module's class name, but it's recommended to set it explicitly for clarity.
-    // The module will be accessible from `requireNativeModule('ExpoDeviceCornerRadius')` in JavaScript.
     Name("ExpoDeviceCornerRadius")
 
-    // Sets constant properties on the module. Can take a dictionary or a closure that returns a dictionary.
-    Constants(
-      "PI" to Math.PI
-    )
-
-    // Defines event names that the module can send to JavaScript.
-    Events("onChange")
-
-    // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
-    Function("hello") {
-      "Hello world! 👋"
-    }
-
-    // Defines a JavaScript function that always returns a Promise and whose native code
-    // is by default dispatched on the different thread than the JavaScript runtime runs on.
-    AsyncFunction("setValueAsync") { value: String ->
-      // Send an event to JavaScript.
-      sendEvent("onChange", mapOf(
-        "value" to value
-      ))
-    }
-
-    // Enables the module to be used as a native view. Definition components that are accepted as part of
-    // the view definition: Prop, Events.
-    View(ExpoDeviceCornerRadiusView::class) {
-      // Defines a setter for the `url` prop.
-      Prop("url") { view: ExpoDeviceCornerRadiusView, url: URL ->
-        view.webView.loadUrl(url.toString())
-      }
-      // Defines an event that the view can send to JavaScript.
-      Events("onLoad")
+    Function("getCornerRadius") {
+      // Result is provided in raw pixel values, so here, we convert it to points, which is what react native uses
+      val density = activity.resources.displayMetrics.density
+      cornerRadius / density
     }
   }
+
+  private val cornerRadius: Int
+    get() {
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) { // API 31
+        val insets: WindowInsets? = activity.window.decorView.rootWindowInsets
+        if (insets != null) {
+          fun rc(pos: Int) =
+            insets.getRoundedCorner(pos)?.radius ?: 0
+
+          val lowestRadiusOfAllCorners = listOf(
+            rc(RoundedCorner.POSITION_TOP_LEFT),
+            rc(RoundedCorner.POSITION_TOP_RIGHT),
+            rc(RoundedCorner.POSITION_BOTTOM_LEFT),
+            rc(RoundedCorner.POSITION_BOTTOM_RIGHT)
+          ).minOrNull()
+
+          return lowestRadiusOfAllCorners ?: 0
+        }
+      }
+      return 0
+    }
+
+  private val activity
+    get() = requireNotNull(appContext.currentActivity)
 }

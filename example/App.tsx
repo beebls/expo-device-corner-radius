@@ -1,39 +1,17 @@
-import { useEvent } from 'expo';
-import ExpoDeviceCornerRadius, { ExpoDeviceCornerRadiusView } from 'expo-device-corner-radius';
-import { Button, SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { getCornerRadius } from "expo-device-corner-radius";
+import { useState } from "react";
+import { SafeAreaView, Text, View } from "react-native";
 
 export default function App() {
-  const onChangePayload = useEvent(ExpoDeviceCornerRadius, 'onChange');
+  const [radius, setRadius] = useState(getCornerRadius());
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.container}>
-        <Text style={styles.header}>Module API Example</Text>
-        <Group name="Constants">
-          <Text>{ExpoDeviceCornerRadius.PI}</Text>
-        </Group>
-        <Group name="Functions">
-          <Text>{ExpoDeviceCornerRadius.hello()}</Text>
-        </Group>
-        <Group name="Async functions">
-          <Button
-            title="Set value"
-            onPress={async () => {
-              await ExpoDeviceCornerRadius.setValueAsync('Hello from JS!');
-            }}
-          />
-        </Group>
-        <Group name="Events">
-          <Text>{onChangePayload?.value}</Text>
-        </Group>
-        <Group name="Views">
-          <ExpoDeviceCornerRadiusView
-            url="https://www.example.com"
-            onLoad={({ nativeEvent: { url } }) => console.log(`Loaded: ${url}`)}
-            style={styles.view}
-          />
-        </Group>
-      </ScrollView>
+      <Group name="Corner Radius">
+        <Text style={{ fontSize: 20, marginLeft: "auto", marginRight: "auto" }}>
+          {radius}
+        </Text>
+      </Group>
     </SafeAreaView>
   );
 }
@@ -58,13 +36,13 @@ const styles = {
   },
   group: {
     margin: 20,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderRadius: 10,
     padding: 20,
   },
   container: {
     flex: 1,
-    backgroundColor: '#eee',
+    backgroundColor: "#eee",
   },
   view: {
     flex: 1,
