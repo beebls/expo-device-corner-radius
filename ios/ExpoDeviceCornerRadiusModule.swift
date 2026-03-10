@@ -27,6 +27,8 @@ public class ExpoDeviceCornerRadiusModule: Module {
     // iPhone 17 series
     case .iPhone17ProMax, .iPhone17Pro, .iPhoneAir, .iPhone17:
       return 62.0
+    case .iPhone17e:
+      return 47.33
       
     // iPhone 16 series
     case .iPhone16ProMax, .iPhone16Pro:

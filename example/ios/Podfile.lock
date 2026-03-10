@@ -1,6 +1,6 @@
 PODS:
   - boost (1.84.0)
-  - DeviceKit (5.7.0)
+  - DeviceKit (5.8.0)
   - DoubleConversion (1.1.6)
   - EXConstants (17.1.7):
     - ExpoModulesCore
@@ -34,7 +34,7 @@ PODS:
   - ExpoAsset (11.1.7):
     - ExpoModulesCore
   - ExpoDeviceCornerRadius (0.1.0):
-    - DeviceKit (~> 5.7)
+    - DeviceKit (~> 5.8)
     - ExpoModulesCore
   - ExpoFileSystem (18.1.11):
     - ExpoModulesCore
@@ -1971,12 +1971,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
-  DeviceKit: d1a956e25b957efb60a87bfe70be4e00ef36846d
+  DeviceKit: 57636054c827d171a22baa3fd320b65a70f3fda7
   DoubleConversion: cb417026b2400c8f53ae97020b2be961b59470cb
   EXConstants: 9d62a46a36eae6d28cb978efcbc68aef354d1704
   Expo: f715b0c058ac26efde6fb3b4f18ffdd8bd933605
   ExpoAsset: 7bdbbacf4e6752ae6e3cf70555cee076f6229e6e
-  ExpoDeviceCornerRadius: 38e456fa33cb62d005c912a22688477f1b837814
+  ExpoDeviceCornerRadius: bddbd3343d98c7590e2febafff9cba6f4ca4ea28
   ExpoFileSystem: 9681caebda23fa1b38a12a9c68b2bade7072ce20
   ExpoFont: 091a47eeaa1b30b0b760aa1d0a2e7814e8bf6fe6
   ExpoKeepAwake: e8dedc115d9f6f24b153ccd2d1d8efcdfd68a527

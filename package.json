@@ -1,6 +1,6 @@
 {
   "name": "expo-device-corner-radius",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Gets the corner radius of the device without using any iOS Private APIs",
   "main": "build/index.js",
   "types": "build/index.d.ts",
