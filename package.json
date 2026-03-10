@@ -21,7 +21,10 @@
     "expo-device-corner-radius",
     "ExpoDeviceCornerRadius"
   ],
-  "repository": "https://github.com/beebls/expo-device-corner-radius",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beebls/expo-device-corner-radius.git"
+  },
   "bugs": {
     "url": "https://github.com/beebls/expo-device-corner-radius/issues"
   },
